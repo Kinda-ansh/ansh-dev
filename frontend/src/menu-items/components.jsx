@@ -45,6 +45,13 @@ const components = {
       icon: icons.RocketOutlined,
     },
     {
+      id: "manage-doctors",
+      title: "Manage Doctors",
+      type: "item",
+      url: "/manage-doctors",
+      icon: icons.ReadOutlined,
+    },
+    {
       id: "payments",
       title: "Payments",
       type: "item",
@@ -61,7 +68,7 @@ const components = {
     // },
     {
       id: "ai-support",
-      title: "Ai Support",
+      title: "AI Support",
       type: "item",
       url: "/ai-support",
       icon: icons.GlobalOutlined,
@@ -74,13 +81,7 @@ const components = {
     //   icon: icons.KeyOutlined,
     // },
 
-    // {
-    //   id: "manage-leaves",
-    //   title: "Manage Leaves",
-    //   type: "item",
-    //   url: "/manage-leaves",
-    //   icon: icons.BarcodeOutlined,
-    // },
+   
 
 
     // {

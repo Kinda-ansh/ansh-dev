@@ -10,6 +10,9 @@ import Clients from "pages/Clients";
 import AdminManage from "pages/AdminManage";
 import HomePageCarousel from "pages/HomePageCarousel";
 import Reviews from "pages/Reviews";
+import ManagePatient from "pages/ManagePatient";
+import Payments from "pages/Payments";
+import ManageDoctors from "pages/ManageDoctors";
 // import AdminManage from "pages/AdminManage";
 // import MasterProtecterRoute from "./MasterProtecterRoute";
 // import EmployeeManagement from "pages/EmployeeManagement";
@@ -51,26 +54,29 @@ const MainRoutes = {
         },
     
         {
-          path: "manage-bookings",
-          element: <Bookings />, // Dashboard page
+          path: "/manage-patient",
+          element: <ManagePatient />, // Dashboard page
+        },
+        
+        {
+          path: "/payments",
+          element: <Payments />, // Dashboard page
+        },
+        
+        {
+          path: "/ai-support",
+          element: <ManagePatient />, // Dashboard page
         },
         {
-          path: "clients",
-          element: <Clients />, // Dashboard page
+          path: "/manage-doctors",
+          element: <ManageDoctors />, // Dashboard page
         },
-    
+        
         {
           path: "admin-management",
           element: <AdminManage />, // Dashboard page
         },
-        {
-          path: "/home-page-carousel",
-          element: <HomePageCarousel />, // Dashboard page
-        },
-        {
-          path: "/reviews",
-          element: <Reviews />, // Dashboard page
-        },
+        
     
       
     
