@@ -12,6 +12,7 @@ const {  JWT } = require("../constants/authConstant");
 //         expiresIn: process.env.JWT_EXPIRES_IN
 //     })
 // }
+const SECRET_KEY = process.env.SECRET_KEY
 
 const generateToken  = async (user,SECRET_KEY,expiresIn) => {
   return await jwt.sign(user, SECRET_KEY, expiresIn ? { expiresIn } : {});

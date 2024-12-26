@@ -5,20 +5,19 @@
 
 
 const express = require('express');
-const employerAuthController = require('../../controller/auth/employerAuthController');
-// const {
-//     checkUserAuthenticate
-//   } = require("../../middleware/Authenticate");
-const {   checkEmployerAuthenticate } = require('../../middleware/EmployerMiddleware');
+
+const Patient_Controller = require('../../../controller/Patient_Controller');
+const { checkAuthenticate } = require('../../../middleware/adminAuthenticate');
 
 
 const router = express.Router();
 
 
-// ====================== || Employee Routes || ==========================
-router.route('/p/add').post(checkAuthenticate, createEmployee)
-router.route('/p/all').get(getAllEmployees)
-router.route('/p/:id').put(checkAuthenticate, updateEmployee)
-router.route('/p/:id').delete(checkAuthenticate, deleteEmployee)
+// ====================== || Patient Routes || ==========================
+router.route('/add').post(checkAuthenticate,Patient_Controller.createPatient)
+router.route('/all').get(checkAuthenticate,Patient_Controller.getAllPatients)
+router.route('/:id').get(Patient_Controller.getPatientById)
+router.route('/update/:id').put(Patient_Controller.updatePatient)
+router.route('/delete/:id').delete(Patient_Controller.deletePatient)
 
 module.exports = router 

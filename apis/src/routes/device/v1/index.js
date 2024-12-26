@@ -13,5 +13,6 @@ router.get("/", (req, res) => {
 });
 
 router.use("/patient", require("./patientRoutes"));
+router.use("/doctor", require("./doctorRoutes"));
 
 module.exports = router;

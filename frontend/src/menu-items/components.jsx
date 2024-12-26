@@ -36,33 +36,34 @@ const components = {
   title: "Components",
   type: "group",
   children: [
+   
     {
-      id: "clients",
-      title: "Clients",
+      id: "manage-patient",
+      title: "Manage Patients",
       type: "item",
-      url: "/clients",
-      icon: icons.DollarOutlined,
-    },
-    {
-      id: "manage-bookings",
-      title: "Manage Bookings",
-      type: "item",
-      url: "/manage-bookings",
+      url: "/manage-patient",
       icon: icons.RocketOutlined,
     },
-    
     {
-      id: "home-page-carousel",
-      title: "Home Page Carousel",
+      id: "payments",
+      title: "Payments",
       type: "item",
-      url: "/home-page-carousel",
-      icon: icons.ReadOutlined,
+      url: "/payments",
+      icon: icons.DollarOutlined,
     },
+    
+    // {
+    //   id: "home-page-carousel",
+    //   title: "Home Page Carousel",
+    //   type: "item",
+    //   url: "/home-page-carousel",
+    //   icon: icons.ReadOutlined,
+    // },
     {
-      id: "reviews",
-      title: "Reviews",
+      id: "ai-support",
+      title: "Ai Support",
       type: "item",
-      url: "/reviews",
+      url: "/ai-support",
       icon: icons.GlobalOutlined,
     },
     // {

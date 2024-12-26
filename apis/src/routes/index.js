@@ -49,6 +49,7 @@ router.route('/healthcheck').get(healthcheck)
 router.route('/admin/signup').post(signUp)
 router.route('/admin/login').post(loginAdmin)
 
+router.use(require("./device/v1/index"));
 
 
 
