@@ -39,8 +39,8 @@ const schema = new Schema(
                 message: "Invalid email address",
             },
         },
-        dob: {
-            type: Date,
+        age: {
+            type: Number,
             required: true, // Date of birth
         },
         address: {
@@ -59,16 +59,19 @@ const schema = new Schema(
         },
         medicalHistory: {
             type: String,
-            default: "", // Optional field for storing medical history
+            default: "", 
         },
         assignedDoctor: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Doctor", // Reference to the Doctor schema
+            ref: "Doctor", 
            
         },
+
+
+        
         registrationDate: {
             type: Date,
-            default: Date.now, // Automatically sets the registration date to the current date
+            default: Date.now, 
         },
     },
     {

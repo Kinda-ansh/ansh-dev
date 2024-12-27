@@ -94,8 +94,15 @@ mongoosePaginate.paginate.options = { customLabels: myCustomLabels };
 const Schema = mongoose.Schema;
 const schema = new Schema(
   {
-    fullname: {
+    fullName: {
       type: String,
+      default: "New User",
+      trim: true
+    },
+    hospitalName: {
+      type: String,
+      default: "New Hospital",
+      trim: true
     },
     email: {
       type: String,
@@ -109,6 +116,10 @@ const schema = new Schema(
       },
     },
     password: { type: String, select: false, required: true },
+    isVerified: { type: Boolean, default: false }, 
+    isActive: { type: Boolean, default: true }, 
+    isBanned: { type: Boolean, default: false }, 
+    banReason: { type: String, default: "" },
   },
   {
     timestamps: {

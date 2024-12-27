@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: #4CAF50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h2 {
+            color: #4CAF50;
+        }
+        .content p {
+            margin: 10px 0;
+        }
+        .content span{
+            margin: 10px 0;
+            font-weight: 600;
+            color: #4CAF50;
+
+        }
+        .footer {
+            background: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMRRegJCim52oSctg4wJ7gi3ZxbGkOpfduSA&s" alt="Medical Clinic Logo">
+            <h1>Welcome to Medical Clinic</h1>
+        </div>
+        <div class="content">
+            <h2>Dear <%= name %>,</h2>
+            <span>Thanks for registering <%= hospitalName %></span>
+            <p>We are thrilled to have you join us at Medical Clinic. Our goal is to provide you with exceptional care and services.</p>
+            <p>Thank you for choosing us for your medical needs. If you have any questions or need assistance, please don't hesitate to reach out.</p>
+            <p>We look forward to serving you!</p>
+            <p>Warm regards,</p>
+            <p><strong>The Medical Clinic Team</strong></p>
+        </div>
+        <div class="footer">
+            © 2024 Medical Clinic. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

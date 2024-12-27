@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import AuthWrapper from "./AuthWrapper";
 import AuthLogin from "./auth-forms/AuthLogin";
 import Logo from "components/logo/LogoMain";
+import { Link } from 'react-router-dom';
 
 // ================================|| LOGIN ||================================ //
 
@@ -39,7 +40,7 @@ export default function Login() {
             sx={{ mb: { xs: -0.5, sm: 0.5 } }}
           >
             <Typography variant="h3">Login</Typography>
-            {/* <Typography
+            <Typography
               component={Link}
               to="/register"
               variant="body1"
@@ -47,7 +48,7 @@ export default function Login() {
               color="primary"
             >
               Don&apos;t have an account?
-            </Typography> */}
+            </Typography>
           </Stack>
         </Grid>
         <Grid item xs={12}>

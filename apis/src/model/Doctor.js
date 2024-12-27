@@ -68,7 +68,7 @@ const schema = new Schema(
         },
         registrationDate: {
             type: Date,
-            default: Date.now, // Automatically sets the registration date to the current date
+            default: Date.now, 
         },
     },
     {

@@ -37,7 +37,7 @@ const MainRoutes = {
   element: <ProtectedRoute />, // Wrapping all routes with ProtectedRoute
   children: [
     {
-      path: "/", // Dashboard layout
+      path: "/", // Dashboard layout 
       element: <Dashboard />,
       children: [
         {

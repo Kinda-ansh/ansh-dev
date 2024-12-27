@@ -10,13 +10,13 @@ const dbService = require("../utils/dbServices");
 
 const createPatient = async (req, res) => {
     try {
-        const { fullName, email, dob, address, contactNumber, medicalHistory, assignedDoctor } = req.body;
+        const { fullName, email, age, address, contactNumber, medicalHistory, assignedDoctor } = req.body;
 
         // Create a new patient record
         const newPatient = await dbService.create(Patient, {
             fullName,
             email,
-            dob,
+            age,
             address,
             contactNumber,
             medicalHistory,

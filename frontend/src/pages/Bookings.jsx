@@ -55,15 +55,22 @@ export default function Bookings() {
   const [open, setOpen] = useState(false);
   const [dialogMode, setDialogMode] = useState('add'); // 'add', 'edit', 'view'
   const [dialogData, setDialogData] = useState({});
-  const [bookingData, setBookingData] = useState({
-    name: '',
+  const [operationalData, setOperationalData] = useState({
+    fullName: '',
     email: '',
-    phone: '',
+    age: '',
     address: '',
-    message: '',
-    service: '',
-    date: '',
-    time: ''
+    contactNumber: '',
+    medicalHistory: '',
+    assignedDoctor: {
+      
+      fullName: '',
+      contactNumber: '',
+      specialization: '',
+      
+    },
+    registrationDate: '',
+    
   });
 
   const [alertOpen, setAlertOpen] = useState(false); // Alert for isMarquee
@@ -76,17 +83,17 @@ export default function Bookings() {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    fetchEmployees();
+    fetchPatients();
   }, []);
 
-  const fetchEmployees = () => {
+  const fetchPatients = () => {
     setLoading(true); // Start loading
     axiosInstance
-      .get('/booking/all') // API to fetch employee data
+      .get('/patient/all') // API to fetch employee data
       .then((response) => {
-        const booking = response.data.data; // Assuming the response is an array of employees
-        console.log(booking);
-        setData(booking); // Store the employee data in the state
+        const patient = response.data.data.patients; // Assuming the response is an array of employees
+        console.log(patient);
+        setData(patient); // Store the employee data in the state
         setLoading(false); // Stop loading
       })
       .catch((error) => {
@@ -109,20 +116,25 @@ export default function Bookings() {
     setDialogData(job);
 
     setTimeout(() => {
-      setBookingData({
-        name: data.name || '',
+      setOperationalData({
+        fullName: data.name || '',
         email: data.email || '',
-        phone: data.phone || '',
+        age: data.age || '',
         address: data.address || '',
-        message: data.message || '',
-        service: data.service || '',
-        date: data.date || '',
-        time: data.time || ''
+        contactNumber: data.phone || '',
+        medicalHistory: data.message || '',
+        assignedDoctor: {
+          fullName: data.assignedDoctor?.name || '',
+          contactNumber: data.assignedDoctor?.phone || '',
+          specialization: data.assignedDoctor?.specialization || '',
+        },
+        registrationDate: data.date || ''
       });
-
+    
       toast.dismiss(loadingToastId);
       setOpen(true);
     }, 100);
+    
   };
 
   const handleClose = (action = null) => {
@@ -158,14 +170,14 @@ export default function Bookings() {
 
     try {
       if (dialogMode === 'add') {
-        await axiosInstance.post('/employees', bookingData);
+        await axiosInstance.post('/employees', operationalData);
         toast.success('Employee added successfully!🎉');
       } else if (dialogMode === 'edit') {
-        await axiosInstance.put(`/employees/${dialogData.id}`, bookingData);
+        await axiosInstance.put(`/employees/${dialogData.id}`, operationalData);
         toast.success('Employee updated successfully!🖊️😍');
       }
 
-      fetchEmployees(); // Refresh the data
+      fetchPatients(); // Refresh the data
       handleClose(); // Close the dialog
 
       toast.dismiss(loadingToastId); // Dismiss loading toast after success
@@ -184,7 +196,7 @@ export default function Bookings() {
   const handleDelete = async () => {
     try {
       await axiosInstance.delete(`/employees/${jobToDelete.id}`);
-      fetchEmployees();
+      fetchPatients();
       setDeleteDialogOpen(false);
       setJobToDelete(null);
       toast.success('Deleted Sucessfully🥲!');
@@ -353,8 +365,8 @@ export default function Bookings() {
                 label="Employee ID"
                 fullWidth
                 variant="outlined"
-                value={bookingData.employeeId}
-                onChange={(e) => setBookingData({ ...bookingData, employeeId: e.target.value })}
+                value={operationalData.employeeId}
+                onChange={(e) => setOperationalData({ ...operationalData, employeeId: e.target.value })}
                 required
               />
             </>

@@ -2,6 +2,7 @@ const Admin = require("../../model/Admin");
 const { adminSignToken } = require("../../services/authServices");
 const bcrypt = require("bcrypt");
 const dbService = require("../../utils/dbServices");
+const sendEmail = require("../../services/nodemailerService");
 
 /**
  * @description : Sign up a new admin user.
@@ -11,9 +12,53 @@ const dbService = require("../../utils/dbServices");
  * @return {Object} : Status message indicating the result of the signup operation, access token, and new admin details. {status, accessToken, newUser}
  */
 
+// const signUp = async (req, res, next) => {
+//   try {
+//     const { fullName, email, password,hospitalName } = req.body;
+
+//     // Validate input
+//     if (!email || !password) {
+//       return res.badRequest({ message: "Email and password are required." });
+//     }
+
+//     const lowerCaseEmail = email.toLowerCase();
+
+//     const user = await Admin.findOne({ email: lowerCaseEmail });
+//     if (user) {
+//       return res.badRequest({ message: "User already exists, please login." });
+//     }
+
+//     const dataToCreate = {
+//       fullName:fullName,
+//       hospitalName:hospitalName,
+//       email: lowerCaseEmail,
+//       password: password,
+//     };
+
+//     const admin = await dbService.create(Admin, dataToCreate);
+
+//     if (!admin) {
+//       return res.badRequest({
+//         message: "Something went wrong, Registration failed.",
+//       });
+//     }
+
+//     const accessToken = await adminSignToken(admin._id);
+
+//     return res.status(201).json({
+//       status: "success",
+//       accessToken,
+//       admin,
+//     });
+//   } catch (error) {
+//     return res.internalServerError({ message: error.message });
+//   }
+// };
+
+
 const signUp = async (req, res, next) => {
   try {
-    const { fullname, email, password } = req.body;
+    const { fullName, email, password, hospitalName } = req.body;
 
     // Validate input
     if (!email || !password) {
@@ -28,7 +73,8 @@ const signUp = async (req, res, next) => {
     }
 
     const dataToCreate = {
-      fullname:fullname,
+      fullName: fullName,
+      hospitalName: hospitalName,
       email: lowerCaseEmail,
       password: password,
     };
@@ -43,6 +89,27 @@ const signUp = async (req, res, next) => {
 
     const accessToken = await adminSignToken(admin._id);
 
+    // =================  Send Welcome Email
+    const emailData = {
+      name: fullName,
+      hospitalName: hospitalName,
+    };
+
+    sendEmail(
+      admin.email,
+      "📌 Welcome to Medical Clinic 🙏",
+      "welcome", 
+      emailData,
+      (err, info) => {
+        if (err) {
+          console.error("Error sending welcome email:", err);
+      
+        } else {
+          console.log("Welcome email sent:", info.messageId);
+        }
+      }
+    );
+
     return res.status(201).json({
       status: "success",
       accessToken,
@@ -53,7 +120,6 @@ const signUp = async (req, res, next) => {
   }
 };
 
-
 /**
  * @description : Log in an admin user.
  * @param {Object} req : The request object including body for email and password.
@@ -61,6 +127,41 @@ const signUp = async (req, res, next) => {
  * @fields : email, password
  * @return {Object} : Status message indicating the result of the login operation, access token, and admin details. {status, message, accessToken, admin}
  */
+// const loginAdmin = async (req, res, next) => {
+//   try {
+//     const { email, password } = req.body;
+
+//     if (!email || !password) {
+//       return res.badRequest({ message: "Please provide email and password" });
+//     }
+
+//     const lowerCaseEmail = email.toLowerCase();
+
+//     const admin = await Admin.findOne({ email: lowerCaseEmail }).select("+password");
+
+//     if (!admin) {
+//       return res.badRequest({ message: "Admin doesn't exist" });
+//     }
+
+//     const passwordMatch = await bcrypt.compare(password, admin.password);
+//     if (!passwordMatch) {
+//       return res.badRequest({ message: "Incorrect password" });
+//     }
+
+//     const accessToken = await adminSignToken(admin._id);
+
+//     return res.status(200).json({
+//       status: "success",
+//       message:"Login sucessfully!",
+//       accessToken,
+//       admin,
+//     });
+//   } catch (error) {
+//     return res.internalServerError({ message: error.message });
+//   }
+// };
+
+
 const loginAdmin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -84,9 +185,30 @@ const loginAdmin = async (req, res, next) => {
 
     const accessToken = await adminSignToken(admin._id);
 
+    // Send Welcome Email
+    const emailData = {
+      name: admin.fullName || "User",
+      hospitalName: admin.hospitalName|| "Your Hospital" // Fallback if fullName is not provided
+    };
+
+    sendEmail(
+      admin.email,
+      "❤️‍🩹Welcome Back to Medical Clinic || Thanks for login again!",
+      "welcome", // Template name without .ejs
+      emailData,
+      (err, info) => {
+        if (err) {
+          console.error("Error sending welcome email:", err);
+          // Optional: You can log the error but not interrupt the login process
+        } else {
+          console.log("Welcome email sent:", info.messageId);
+        }
+      }
+    );
+
     return res.status(200).json({
       status: "success",
-      message:"Login sucessfully!",
+      message: "Login successfully!",
       accessToken,
       admin,
     });
@@ -94,6 +216,8 @@ const loginAdmin = async (req, res, next) => {
     return res.internalServerError({ message: error.message });
   }
 };
+
+
 
 module.exports = {
   signUp,

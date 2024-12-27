@@ -42,8 +42,7 @@ app.use(morgan(morganFormat, {
 //   credentials: true // Allow sending cookies or other credentials
 // }));
 const allowedOrigins = [
-  'http://localhost:3000',
-  'https://finowings-frontend-assignment.netlify.app'
+  'http://localhost:3031'
 ];
 
 app.use(cors({
