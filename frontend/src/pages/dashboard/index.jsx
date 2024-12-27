@@ -29,6 +29,8 @@ import avatar1 from 'assets/images/users/avatar-1.png';
 import avatar2 from 'assets/images/users/avatar-2.png';
 import avatar3 from 'assets/images/users/avatar-3.png';
 import avatar4 from 'assets/images/users/avatar-4.png';
+import { useEffect, useState } from 'react';
+import axiosInstance from 'utils/axiosInstance';
 
 // avatar style
 const avatarSX = {
@@ -50,6 +52,31 @@ const actionSX = {
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 export default function DashboardDefault() {
+
+  const [cardData, setCardData] = useState([])
+
+  useEffect(() => {
+    fetchCardData()
+  }, [])
+
+
+
+  const fetchCardData = async () => {
+
+
+    try {
+      const response = await axiosInstance.get('/dashboard/cards');
+      const data = response.data;
+      setCardData(data);
+
+
+    } catch (error) {
+      console.log(error)
+    }
+
+
+  }
+
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
       {/* row 1 */}
@@ -57,16 +84,16 @@ export default function DashboardDefault() {
         <Typography variant="h5">Dashboard</Typography>
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Total Page Views" count="4,42,236" percentage={59.3} extra="35,000" />
+        <AnalyticEcommerce title="Total Patients" count={`00${cardData.totalPatients || "-"}`} percentage={59.3} extra="35,000" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Total Users" count="78,250" percentage={70.5} extra="8,900" />
+        <AnalyticEcommerce title="Total Doctors" count={`00${cardData.totalDoctors || "-"}`} percentage={70.5} extra="8,900" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Total Order" count="18,800" percentage={27.4} isLoss color="warning" extra="1,943" />
+        <AnalyticEcommerce title="Total Payments" count="$18,800" percentage={27.4} isLoss color="warning" extra="1,943" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Total Sales" count="$35,078" percentage={27.4} isLoss color="warning" extra="$20,395" />
+        <AnalyticEcommerce title="Today's Appoinments" count="003" percentage={27.4} isLoss color="warning" extra="$20,395" />
       </Grid>
 
       <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
@@ -78,7 +105,7 @@ export default function DashboardDefault() {
       <Grid item xs={12} md={5} lg={4}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
-            <Typography variant="h5">Income Overview</Typography>
+            <Typography variant="h5">Common medical conditions</Typography>
           </Grid>
           <Grid item />
         </Grid>
@@ -86,9 +113,9 @@ export default function DashboardDefault() {
           <Box sx={{ p: 3, pb: 0 }}>
             <Stack spacing={2}>
               <Typography variant="h6" color="text.secondary">
-                This Week Statistics
+                Total Patients and their Medical conditions
               </Typography>
-              <Typography variant="h3">$7,650</Typography>
+              <Typography variant="h5">205 - Patients</Typography>
             </Stack>
           </Box>
           <MonthlyBarChart />
@@ -99,7 +126,7 @@ export default function DashboardDefault() {
       <Grid item xs={12} md={7} lg={8}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
-            <Typography variant="h5">Recent Orders</Typography>
+            <Typography variant="h5">Recent patient onboarding list</Typography>
           </Grid>
           <Grid item />
         </Grid>
@@ -107,7 +134,8 @@ export default function DashboardDefault() {
           <OrdersTable />
         </MainCard>
       </Grid>
-      <Grid item xs={12} md={5} lg={4}>
+
+      {/* <Grid item xs={12} md={5} lg={4}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
             <Typography variant="h5">Analytics Report</Typography>
@@ -131,13 +159,13 @@ export default function DashboardDefault() {
           </List>
           <ReportAreaChart />
         </MainCard>
-      </Grid>
+      </Grid> */}
 
       {/* row 4 */}
-      <Grid item xs={12} md={7} lg={8}>
+      {/* <Grid item xs={12} md={7} lg={8}>
         <SaleReportCard />
-      </Grid>
-      <Grid item xs={12} md={5} lg={4}>
+      </Grid> */}
+      {/* <Grid item xs={12} md={5} lg={4}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
             <Typography variant="h5">Transaction History</Typography>
@@ -240,7 +268,7 @@ export default function DashboardDefault() {
             </Button>
           </Stack>
         </MainCard>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

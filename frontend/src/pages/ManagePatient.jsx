@@ -250,6 +250,7 @@ export default function ManagePatient() {
               <StyledTableCell>Email</StyledTableCell>
               <StyledTableCell>Age</StyledTableCell>
               <StyledTableCell>Contact Number</StyledTableCell>
+              <StyledTableCell>Medical History</StyledTableCell>
               <StyledTableCell>Assigned Doctor</StyledTableCell>
               <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
@@ -282,6 +283,9 @@ export default function ManagePatient() {
                   </StyledTableCell>
                   <StyledTableCell component="th" scope="row">
                     {job.contactNumber || '-'}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {job.medicalHistory || '-'}
                   </StyledTableCell>
                   <StyledTableCell component="th" scope="row">
                     {job.assignedDoctor?.fullName || '-'}
@@ -587,7 +591,7 @@ export default function ManagePatient() {
                   </MenuItem>
                 ))}
               </Select>
-              
+
               <label
                 htmlFor="Registration Date"
                 style={{

@@ -5,14 +5,11 @@ import { Outlet } from "react-router-dom";
 import Loadable from "components/Loadable";
 import Dashboard from "layout/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
-import Bookings from "pages/Bookings";
-import Clients from "pages/Clients";
 import AdminManage from "pages/AdminManage";
-import HomePageCarousel from "pages/HomePageCarousel";
-import Reviews from "pages/Reviews";
 import ManagePatient from "pages/ManagePatient";
 import Payments from "pages/Payments";
 import ManageDoctors from "pages/ManageDoctors";
+import AISupport from "pages/AISupport";
 // import AdminManage from "pages/AdminManage";
 // import MasterProtecterRoute from "./MasterProtecterRoute";
 // import EmployeeManagement from "pages/EmployeeManagement";
@@ -52,36 +49,36 @@ const MainRoutes = {
           path: "dashboard/:id",
           element: <DashboardDefault />, // Dashboard page
         },
-    
+
         {
           path: "/manage-patient",
           element: <ManagePatient />, // Dashboard page
         },
-        
+
         {
           path: "/payments",
           element: <Payments />, // Dashboard page
         },
-        
+
         {
           path: "/ai-support",
-          element: <ManagePatient />, // Dashboard page
+          element: <AISupport />, // Dashboard page
         },
         {
           path: "/manage-doctors",
           element: <ManageDoctors />, // Dashboard page
         },
-        
+
         {
           path: "admin-management",
           element: <AdminManage />, // Dashboard page
         },
-        
-    
-      
-    
-       
-    
+
+
+
+
+
+
         // Admin management section wrapped by MasterProtecterRoute
         // {
         //   element: <MasterProtecterRoute />, // Wrapping this section with MasterProtecterRoute
@@ -123,9 +120,9 @@ const MainRoutes = {
         //       path: "apply-leave",
         //       element: <ApplyLeaves />, // Dashboard page
         //     },
-        
-           
-          
+
+
+
         //   ],
         // },
       ],

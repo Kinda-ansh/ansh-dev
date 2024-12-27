@@ -35,28 +35,27 @@ app.use(morgan(morganFormat, {
 }));
 
 // ========================= || Cors
-// app.use(cors({
-//   origin: 'http://localhost:3000',// Replace this with the frontend origin you want to allow
-//   origin: "https://finowings-frontend-assignment.netlify.app",
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   credentials: true // Allow sending cookies or other credentials
-// }));
-const allowedOrigins = [
-  'http://localhost:3031'
-];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin, like mobile apps or curl requests
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: "*",
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true // Allow sending cookies or other credentials
 }));
+// const allowedOrigins = [
+//   'http://localhost:3031'
+// ];
+
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     // Allow requests with no origin, like mobile apps or curl requests
+//     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true // Allow sending cookies or other credentials
+// }));
 
 
 // const corsOptions = { origin: process.env.ALLOW_ORIGIN };

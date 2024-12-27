@@ -8,8 +8,7 @@ const router = express.Router();
 const rateLimit = require("express-rate-limit");
 const { healthcheck } = require("../controller/healthCkeck");
 const { signUp, loginAdmin } = require("../controller/auth/adminAuthController");
-const { createEmployee, getAllEmployees, updateEmployee, deleteEmployee } = require("../controller/Employee_Controller");
-const { checkAuthenticate } = require("../middleware/adminAuthenticate");
+
 // const HeaderKey = require("../middleware/headerKey");
 
 const authRateLimiter = rateLimit({

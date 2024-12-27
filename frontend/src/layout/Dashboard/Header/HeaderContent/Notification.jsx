@@ -115,7 +115,7 @@ export default function Notification() {
                     </>
                   }
                 >
-                  <List
+                  {/* <List
                     component="nav"
                     sx={{
                       p: 0,
@@ -234,7 +234,7 @@ export default function Notification() {
                         }
                       />
                     </ListItemButton>
-                  </List>
+                  </List> */}
                 </MainCard>
               </ClickAwayListener>
             </Paper>

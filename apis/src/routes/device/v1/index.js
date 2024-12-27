@@ -4,7 +4,7 @@
  */
 
 const express = require("express");
-const { getAnalyticsData } = require("../../../controller/Dashboard_Controller");
+const { getTotalDataDashboardCard } = require("../../../controller/Dashboard_Controller");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -15,7 +15,6 @@ router.get("/", (req, res) => {
 
 router.use("/patient", require("./patientRoutes"));
 router.use("/doctor", require("./doctorRoutes"));
-router.use("", require("./doctorRoutes"));
-router.route('/dashboard/cards').get(getAnalyticsData)
+router.route('/dashboard/cards').get(getTotalDataDashboardCard)
 
 module.exports = router;

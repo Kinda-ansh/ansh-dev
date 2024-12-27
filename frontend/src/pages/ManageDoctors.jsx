@@ -223,7 +223,7 @@ export default function ManageDoctors() {
       >
         <Button variant="contained" style={{ backgroundColor: '#008080' }}>
           {' '}
-          Add New Patient
+          Add New Doctor
         </Button>
       </h3>
 
@@ -545,7 +545,7 @@ export default function ManageDoctors() {
                 InputLabelProps={{ shrink: true }}
               />
 
-             
+
             </>
           )}
         </DialogContent>

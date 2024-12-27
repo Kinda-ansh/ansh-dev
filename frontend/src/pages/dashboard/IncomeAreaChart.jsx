@@ -46,19 +46,19 @@ export default function IncomeAreaChart({ slot }) {
         categories:
           slot === "month"
             ? [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-              ]
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec",
+            ]
             : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         labels: {
           style: {
@@ -111,14 +111,14 @@ export default function IncomeAreaChart({ slot }) {
   useEffect(() => {
     setSeries([
       {
-        name: "Page Views",
+        name: "Age",
         data:
           slot === "month"
-            ? [76, 85, 101, 98, 87, 105, 91, 114, 94, 86, 115, 35]
-            : [31, 40, 28, 51, 42, 109, 100],
+            ? [76, 85, 45, 98, 87, 20, 91, 20, 94, 86, 20, 35]
+            : [31, 40, 28, 51, 42, 10, 75],
       },
       {
-        name: "Sessions",
+        name: "Patients",
         data:
           slot === "month"
             ? [110, 60, 150, 35, 60, 36, 26, 45, 65, 52, 53, 41]
@@ -139,94 +139,3 @@ export default function IncomeAreaChart({ slot }) {
 
 IncomeAreaChart.propTypes = { slot: PropTypes.string };
 
-// import PropTypes from "prop-types";
-// import { useState, useEffect } from "react";
-// import { useTheme } from "@mui/material/styles";
-// import ReactApexChart from "react-apexcharts";
-
-// const areaChartOptions = {
-//   chart: {
-//     height: 450,
-//     type: "area",
-//     toolbar: { show: false },
-//   },
-//   dataLabels: { enabled: false },
-//   stroke: { curve: "smooth", width: 2 },
-//   grid: { strokeDashArray: 0 },
-// };
-
-// export default function IncomeAreaChart({ slot, chartData }) {
-//   const theme = useTheme();
-//   const { secondary } = theme.palette.text;
-//   const line = theme.palette.divider;
-
-//   const [options, setOptions] = useState(areaChartOptions);
-//   const [series, setSeries] = useState([]);
-
-//   useEffect(() => {
-//     setOptions((prevState) => ({
-//       ...prevState,
-//       colors: [theme.palette.primary.main, theme.palette.primary[700]],
-//       xaxis: {
-//         categories:
-//           slot === "month"
-//             ? [
-//                 "Jan",
-//                 "Feb",
-//                 "Mar",
-//                 "Apr",
-//                 "May",
-//                 "Jun",
-//                 "Jul",
-//                 "Aug",
-//                 "Sep",
-//                 "Oct",
-//                 "Nov",
-//                 "Dec",
-//               ]
-//             : ["Data1", "Data2", "Data3", "Data4", "Data5", "Data6", "Data7"],
-//         labels: {
-//           style: { colors: Array(12).fill(secondary) },
-//         },
-//         axisBorder: { show: true, color: line },
-//         tickAmount: slot === "month" ? 11 : 7,
-//       },
-//       yaxis: {
-//         labels: {
-//           style: { colors: [secondary] },
-//         },
-//       },
-//       grid: { borderColor: line },
-//     }));
-//   }, [secondary, line, theme, slot]);
-
-//   useEffect(() => {
-//     setSeries([
-//       {
-//         name: "Page Views",
-//         data: chartData.pageViews || [],
-//       },
-//       {
-//         name: "Sessions",
-//         data: chartData.sessions || [],
-//       },
-//     ]);
-//   }, [chartData]);
-
-//   return (
-//     <ReactApexChart
-//       options={options}
-//       series={series}
-//       type="area"
-//       height={450}
-//     />
-//   );
-// }
-
-// IncomeAreaChart.propTypes = {
-//   slot: PropTypes.string,
-//   chartData: PropTypes.shape({
-//     pageViews: PropTypes.arrayOf(PropTypes.number),
-//     sessions: PropTypes.arrayOf(PropTypes.number),
-//   }),
-// };
