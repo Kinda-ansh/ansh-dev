@@ -52,26 +52,34 @@ const MainRoutes = {
 
         {
           path: "/manage-patient",
-          element: <ManagePatient />, // Dashboard page
+          element: <ManagePatient />, 
         },
 
         {
           path: "/payments",
-          element: <Payments />, // Dashboard page
+          element: <Payments />, 
+        },
+        {
+          path: "/payments/:id",
+          element: <Payments />, 
+        },
+        {
+          path: "/sucessfull",
+          element: <Payments />, 
         },
 
         {
           path: "/ai-support",
-          element: <AISupport />, // Dashboard page
+          element: <AISupport />, 
         },
         {
           path: "/manage-doctors",
-          element: <ManageDoctors />, // Dashboard page
+          element: <ManageDoctors />, 
         },
 
         {
           path: "admin-management",
-          element: <AdminManage />, // Dashboard page
+          element: <AdminManage />, 
         },
 
 

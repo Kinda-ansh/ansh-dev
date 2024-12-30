@@ -37,6 +37,8 @@
     "@mui/lab": "^5.0.0-alpha.167",
     "@mui/material": "^5.16.7",
     "@mui/system": "^5.15.12",
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.4.0",
     "@svgr/webpack": "^8.1.0",
     "@syncfusion/ej2-react-richtexteditor": "^27.1.51",
     "@table-library/react-table-library": "^4.1.7",

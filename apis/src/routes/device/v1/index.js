@@ -15,6 +15,8 @@ router.get("/", (req, res) => {
 
 router.use("/patient", require("./patientRoutes"));
 router.use("/doctor", require("./doctorRoutes"));
+router.use("/payment", require("./paymentRoutes"));
 router.route('/dashboard/cards').get(getTotalDataDashboardCard)
+
 
 module.exports = router;
